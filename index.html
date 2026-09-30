@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>유민주 | My Profile</title>
+
+  <style>
+    :root {
+      --navy-dark: #1d2d50;
+      --navy: #304b7a;
+      --navy-light: #7087b8;
+      --pink: #ffc8db;
+      --pink-soft: #fff1f6;
+      --pink-deep: #ee89ab;
+      --lavender: #e8e4ff;
+      --sky: #eaf7ff;
+      --mint: #e7f8f0;
+      --cream: #fffdf9;
+      --white: #ffffff;
+      --text: #3d4961;
+      --muted: #77829a;
+      --line: #e9edf5;
+      --shadow: 0 14px 32px rgba(53, 72, 112, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% 8%, #fff0f5 0, transparent 22%),
+        radial-gradient(circle at 92% 32%, #eaf8ff 0, transparent 20%),
+        var(--cream);
+      font-family: system-ui, -apple-system, "Apple SD Gothic Neo",
+        "Malgun Gothic", sans-serif;
+      line-height: 1.75;
+    }
+
+    /* 상단 남색 소개 영역 */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 78px 24px 72px;
+      color: white;
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy), #6179aa);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 330px;
+      height: 330px;
+      top: -165px;
+      right: -95px;
+      background: var(--pink);
+      opacity: 0.28;
+    }
+
+    .hero::after {
+      width: 240px;
+      height: 240px;
+      bottom: -125px;
+      left: -70px;
+      background: var(--lavender);
+      opacity: 0.2;
+    }
+
+    .circle-decoration {
+      position: absolute;
+      top: 86px;
+      right: 24%;
+      width: 38px;
+      height: 38px;
+      border: 2px solid rgba(255, 255, 255, 0.45);
+      border-radius: 50%;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      width: min(100%, 1080px);
+      margin: 0 auto;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 15px;
+      padding: 7px 15px;
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(3rem, 8vw, 5.6rem);
+      letter-spacing: -0.09em;
+      line-height: 1.1;
+    }
+
+    .hero-subtitle {
+      margin: 16px 0 0;
+      color: #e8efff;
+      font-size: clamp(1rem, 2.4vw, 1.2rem);
+    }
+
+    .goal {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 28px 0 0;
+      padding: 15px 19px;
+      border-left: 4px solid var(--pink-deep);
+      border-radius: 0 15px 15px 0;
+      background: rgba(255, 255, 255, 0.13);
+      font-weight: 800;
+    }
+
+    .profile-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .profile-icon {
+      display: grid;
+      place-items: center;
+      width: min(195px, 38vw);
+      aspect-ratio: 1;
+      border: 8px solid rgba(255, 255, 255, 0.25);
+      border-radius: 50%;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 209, 227, 0.43),
+        rgba(232, 228, 255, 0.3)
+      );
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.22);
+      font-size: clamp(4.8rem, 13vw, 7.5rem);
+    }
+
+    .mini-badge {
+      position: absolute;
+      right: -5px;
+      bottom: 8px;
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      border: 4px solid var(--navy);
+      border-radius: 50%;
+      background: var(--pink);
+      font-size: 1.65rem;
+    }
+
+    /* 밝은 본문 영역 */
+    main {
+      width: min(100%, 1080px);
+      margin: 0 auto;
+      padding: 64px 24px 78px;
+    }
+
+    .section {
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 22px;
+      color: var(--navy);
+      font-size: 1.78rem;
+      letter-spacing: -0.05em;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 10px;
+      height: 29px;
+      border-radius: 99px;
+      background: linear-gradient(var(--pink-deep), #b8aae9);
+    }
+
+    .card {
+      padding: 29px;
+      border: 1px solid rgba(229, 233, 242, 0.85);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: var(--shadow);
+    }
+
+    .info-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .info-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .info-item:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .info-label {
+      color: var(--navy-light);
+      font-weight: 800;
+    }
+
+    .highlight {
+      color: #bf4a6d;
+      font-weight: 800;
+    }
+
+    .dream-box {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      padding: 29px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, var(--pink-soft), var(--lavender));
+      box-shadow: 0 10px 25px rgba(185, 152, 205, 0.16);
+    }
+
+    .dream-icon {
+      display: grid;
+      flex-shrink: 0;
+      place-items: center;
+      width: 80px;
+      height: 80px;
+      border-radius: 25px;
+      background: white;
+      box-shadow: 0 8px 18px rgba(119, 102, 160, 0.12);
+      font-size: 2.8rem;
+    }
+
+    .dream-box p {
+      margin: 5px 0 0;
+    }
+
+    .dream-box strong {
+      color: #b9486c;
+      font-size: 1.15rem;
+    }
+
+    .color-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 13px;
+      color: #a54362;
+      font-weight: 700;
+    }
+
+    .color-dot {
+      width: 21px;
+      height: 21px;
+      border: 3px solid white;
+      border-radius: 50%;
+      background: var(--pink-deep);
+      box-shadow: 0 0 0 2px #f3b6c9;
+    }
+
+    .favorites-grid,
+    .place-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .place-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .favorite-card,
+    .place-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 180px;
+      padding: 24px 18px;
+      border: 1px solid #edf0f6;
+      border-radius: 22px;
+      background: white;
+      text-align: center;
+      box-shadow: 0 9px 20px rgba(57, 76, 117, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .favorite-card:hover,
+    .place-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 29px rgba(239, 135, 170, 0.21);
+    }
+
+    .emoji {
+      margin-bottom: 10px;
+      font-size: 3.2rem;
+    }
+
+    .favorite-card strong,
+    .place-card strong {
+      color: var(--navy);
+      font-size: 1.06rem;
+    }
+
+    .place-card span {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 0.91rem;
+    }
+
+    .media-grid,
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .media-card {
+      padding: 25px;
+      border-radius: 22px;
+      background: white;
+      box-shadow: var(--shadow);
+    }
+
+    .media-card:nth-child(1) { border-top: 5px solid #bba9ef; }
+    .media-card:nth-child(2) { border-top: 5px solid var(--pink-deep); }
+    .media-card:nth-child(3) { border-top: 5px solid #8fc8ec; }
+    .media-card:nth-child(4) { border-top: 5px solid #9edabf; }
+
+    .media-card h3,
+    .card h3 {
+      margin: 0 0 9px;
+      color: var(--navy);
+      font-size: 1.1rem;
+    }
+
+    .media-card p {
+      margin: 0;
+    }
+
+    .song-box {
+      padding: 30px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #eef6ff, #f5efff);
+      box-shadow: 0 10px 24px rgba(103, 128, 184, 0.13);
+      text-align: center;
+    }
+
+    .song-box .music-icon {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 3.5rem;
+    }
+
+    .song-box strong {
+      color: var(--navy);
+      font-size: 1.3rem;
+    }
+
+    .song-box p {
+      max-width: 680px;
+      margin: 10px auto 0;
+    }
+
+    .winter-box {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      padding: 29px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #edf9ff, #e9ecff);
+      box-shadow: 0 10px 24px rgba(103, 148, 184, 0.13);
+    }
+
+    .winter-icon {
+      flex-shrink: 0;
+      font-size: 4.3rem;
+    }
+
+    .winter-box strong {
+      color: var(--navy);
+      font-size: 1.15rem;
+    }
+
+    .winter-box p {
+      margin: 6px 0 0;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 11px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .timeline li {
+      position: relative;
+      padding: 11px 13px 11px 39px;
+      border-radius: 12px;
+      background: #f8faff;
+    }
+
+    .timeline li::before {
+      content: "✦";
+      position: absolute;
+      top: 11px;
+      left: 14px;
+      color: var(--pink-deep);
+    }
+
+    footer {
+      padding: 24px;
+      background: var(--navy-dark);
+      color: #d9e4fa;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 720px) {
+      .hero {
+        padding: 58px 22px;
+      }
+
+      .hero-inner {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 24px;
+      }
+
+      .profile-icon {
+        width: 138px;
+      }
+
+      main {
+        padding: 46px 18px 60px;
+      }
+
+      .card,
+      .dream-box,
+      .winter-box,
+      .song-box {
+        padding: 22px;
+      }
+
+      .info-item {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+
+      .favorites-grid,
+      .place-grid,
+      .media-grid,
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+
+      .favorite-card,
+      .place-card {
+        flex-direction: row;
+        gap: 16px;
+        min-height: 125px;
+      }
+
+      .emoji {
+        margin: 0;
+      }
+
+      .dream-box,
+      .winter-box {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="hero">
+    <div class="circle-decoration"></div>
+
+    <div class="hero-inner">
+      <div class="hero-text">
+        <span class="tag">CHEONGJU UNIVERSITY · BUSINESS ADMINISTRATION</span>
+        <h1>유민주</h1>
+        <p class="hero-subtitle">
+          청주대학교 경영학과 3학년 · 마케팅에 관심 있는 학생입니다.
+        </p>
+        <p class="goal">✨ 매사 열심히하자!</p>
+      </div>
+
+      <div class="profile-wrap">
+        <div class="profile-icon" aria-label="웃는 얼굴">😊</div>
+        <div class="mini-badge" aria-label="비행기">✈️</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <h2 class="section-title">About Me</h2>
+      <div class="card">
+        <div class="info-list">
+          <div class="info-item">
+            <span class="info-label">이름</span>
+            <span>유민주</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">생년월일</span>
+            <span>2005년 12월 15일</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">소속</span>
+            <span>청주대학교 경영학과 3학년</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">관심 분야</span>
+            <span class="highlight">마케팅</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">인스타그램</span>
+            <span>@blvemyby</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">My Dream</h2>
+      <div class="dream-box">
+        <div class="dream-icon">✈️</div>
+        <div>
+          <strong>장래희망은 지상직 승무원입니다.</strong>
+          <p>
+            공항에서 다양한 사람들을 만나고, 여행을 시작하는 순간부터
+            고객에게 따뜻한 도움과 편안함을 전하는 지상직 승무원이 되고 싶습니다.
+            밝은 미소와 친절한 마음으로 누군가의 여행을 더 특별하게 만드는 것이 제 꿈입니다.
+          </p>
+          <div class="color-note">
+            <span class="color-dot"></span>
+            제가 가장 좋아하는 색은 사랑스러운 연핑크색이에요.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Things I Love</h2>
+      <div class="favorites-grid">
+        <article class="favorite-card">
+          <span class="emoji">🎬</span>
+          <strong>드라마 보기</strong>
+        </article>
+        <article class="favorite-card">
+          <span class="emoji">🐶</span>
+          <strong>강아지랑 산책하기</strong>
+        </article>
+        <article class="favorite-card">
+          <span class="emoji">☕</span>
+          <strong>예쁜 카페 찾아다니기</strong>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Favorite Contents</h2>
+      <div class="media-grid">
+        <article class="media-card">
+          <h3>📺 제일 좋아하는 드라마</h3>
+          <p>
+            <strong>달의 연인 - 보보경심 려</strong>와
+            <strong>태양의 후예</strong>를 가장 좋아합니다.
+            설레는 로맨스와 몰입감 있는 이야기를 보며 힐링하는 시간을 좋아해요.
+          </p>
+        </article>
+
+        <article class="media-card">
+          <h3>🎞️ 좋아하는 영화</h3>
+          <p>
+            가장 좋아하는 영화는 <strong>트와일라잇</strong>입니다.
+            신비롭고 감성적인 분위기, 그리고 특별한 사랑 이야기가 매력적이라고 생각합니다.
+          </p>
+        </article>
+
+        <article class="media-card">
+          <h3>🖤💗 좋아하는 아이돌</h3>
+          <p>
+            제가 좋아하는 아이돌은 <strong>블랙핑크(BLACKPINK)</strong>입니다.
+            멋진 무대와 자신감 있는 에너지를 볼 때마다 기분이 좋아집니다.
+          </p>
+        </article>
+
+        <article class="media-card">
+          <h3>🐾 우리 가족 막내</h3>
+          <p>
+            우리 가족의 귀여운 막내는 강아지 <strong>체리</strong>입니다.
+            체리와 산책하고 함께 시간을 보내는 순간은 제 일상에서 가장 행복한 시간 중 하나예요.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">My Favorite Song</h2>
+      <div class="song-box">
+        <span class="music-icon">🎧</span>
+        <strong>아이유 - 밤편지</strong>
+        <p>
+          잔잔하고 따뜻한 멜로디가 마음을 편안하게 해주는 노래입니다.
+          조용한 밤이나 감성적인 카페에서 들으면 더욱 분위기가 좋아서 자주 듣고 싶어지는 곡이에요.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Best Travel Memories</h2>
+      <div class="place-grid">
+        <article class="place-card">
+          <span class="emoji">🗼</span>
+          <strong>프랑스 파리</strong>
+          <span>낭만적인 거리와 아름다운 풍경이 기억에 남는 도시</span>
+        </article>
+
+        <article class="place-card">
+          <span class="emoji">🗽</span>
+          <strong>미국 뉴욕</strong>
+          <span>에너지 넘치는 분위기와 멋진 야경이 인상적인 도시</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Places I Want to Go</h2>
+      <div class="favorites-grid">
+        <article class="place-card">
+          <span class="emoji">🏙️</span>
+          <strong>두바이</strong>
+          <span>화려한 야경과 사막의 풍경을 보고 싶어요.</span>
+        </article>
+
+        <article class="place-card">
+          <span class="emoji">🏛️</span>
+          <strong>그리스 산토리니</strong>
+          <span>하얀 건물과 푸른 바다를 직접 보고 싶어요.</span>
+        </article>
+
+        <article class="place-card">
+          <span class="emoji">🌴</span>
+          <strong>LA</strong>
+          <span>따뜻하고 자유로운 분위기를 느껴보고 싶어요.</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">My Favorite Season</h2>
+      <div class="winter-box">
+        <div class="winter-icon">❄️</div>
+        <div>
+          <strong>제가 가장 좋아하는 계절은 겨울입니다.</strong>
+          <p>
+            제 생일이 12월 겨울에 있기 때문에 겨울은 저에게 더 특별한 계절입니다.
+            밖은 차갑고 춥지만, 집 안에서 느끼는 따뜻함과 포근한 분위기를 좋아합니다.
+            크리스마스와 연말처럼 설레는 순간들이 많은 것도 겨울을 좋아하는 이유입니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">My Story</h2>
+
+      <div class="two-column">
+        <div class="card">
+          <h3>🎓 학력</h3>
+          <ul class="timeline">
+            <li>아이림유치원</li>
+            <li>산성초등학교</li>
+            <li>청주동중학교</li>
+            <li>상당고등학교</li>
+            <li>청주대학교 입학</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>👨‍👩‍👧‍👧 가족관계</h3>
+          <ul class="timeline">
+            <li>아빠</li>
+            <li>엄마</li>
+            <li>여동생</li>
+            <li>나, 유민주</li>
+            <li>강아지 체리 🐾</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 YU MINJU · THANK YOU FOR VISITING MY PAGE! 💗
+  </footer>
+</body>
+</html>
